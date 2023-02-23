@@ -9,7 +9,14 @@ if (!isset($_GET['target']) || !isset($_GET['type'])){
     header('Location: index.php');
 }
 
+// Get the value of the parameter "name" from the HTTP request
+$name = $_GET['name'];
 
+// Sanitize the input to prevent XSS attacks
+$name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
+
+// Use the sanitized input to render the HTML page
+echo "<html><head><title>Hello, $name!</title></head><body><h1>Hello, $name!</h1></body></html>";
 
 ?>
 <!DOCTYPE html>
